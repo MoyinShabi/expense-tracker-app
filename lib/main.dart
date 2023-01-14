@@ -124,6 +124,32 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  // Builder method
+  List<Widget> _buildLandscapeContent(
+    MediaQueryData mediaQuery,
+    AppBar appBar,
+    Widget txChartWidget,
+    Widget txListWidget,
+  ) {
+    return [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          const Text('Show Chart'),
+          Switch.adaptive(
+              activeColor: Theme.of(context).colorScheme.secondary,
+              value: _showChart,
+              onChanged: (value) {
+                setState(() {
+                  _showChart = value;
+                });
+              }),
+        ],
+      ),
+      _showChart ? txChartWidget : txListWidget,
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     // print(_recentTransactons);
@@ -169,7 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
           (isPortrait ? 0.73 : 0.7), // % of the available height of the screen
       child: TransactionList(
         transactionList: _userTransactions,
-        deletetx: _deleteTransaction,
+        deleteTx: _deleteTransaction,
         snackBarAction: _undoDelete,
       ),
     );
@@ -188,23 +214,8 @@ class _MyHomePageState extends State<MyHomePage> {
             if (isPortrait) ...[transactionChartWidget, transactionListWidget],
 
             if (!isPortrait)
-              // Adaptive Switch
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const Text('Show Chart'),
-                  Switch.adaptive(
-                      activeColor: Theme.of(context).colorScheme.secondary,
-                      value: _showChart,
-                      onChanged: (value) {
-                        setState(() {
-                          _showChart = value;
-                        });
-                      }),
-                ],
-              ),
-            if (!isPortrait)
-              _showChart ? transactionChartWidget : transactionListWidget,
+              ..._buildLandscapeContent(mediaQuery, appBar,
+                  transactionChartWidget, transactionListWidget)
           ],
         ),
       ),

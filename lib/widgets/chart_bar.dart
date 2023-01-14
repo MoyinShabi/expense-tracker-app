@@ -1,5 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 class ChartBar extends StatelessWidget {
@@ -8,7 +6,8 @@ class ChartBar extends StatelessWidget {
   final double percentageOfTotalAmount;
 
   const ChartBar(
-      {required this.label,
+      {super.key,
+      required this.label,
       required this.weekdayTotalAmount,
       required this.percentageOfTotalAmount});
 
@@ -42,7 +41,7 @@ class ChartBar extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey, width: 1.0),
-                      color: Color.fromRGBO(220, 220, 220, 1),
+                      color: const Color.fromRGBO(220, 220, 220, 1),
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
@@ -66,7 +65,7 @@ class ChartBar extends StatelessWidget {
               child: FittedBox(
                 child: Text(
                   label,
-                  style: TextStyle(fontSize: 3),
+                  style: const TextStyle(fontSize: 3),
                 ),
               ),
             ),
