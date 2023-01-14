@@ -1,16 +1,19 @@
-# personal_expenses_app
+# Expense Tracker App
 
-A new Flutter project.
+### Features
 
-## Getting Started
+- [x] Add Expense to the list.
+- [x] Delete Expense from the list.
+- [x] Dynamic chart showing the total amount spent in a day, from the past 7 days.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Screenshots
+|                             |                              |
+| --------------------------------- | --------------------------------- |
+| ![Screenshot 1](/screenshots/Screenshot_1.png)  | ![Screenshot 1](/screenshots/Screenshot_2.png)  |
+| ![Screenshot 1](/screenshots/Screenshot_3.png)  | ![Screenshot 1](/screenshots/Screenshot_4.png)  |
+| ![Screenshot 1](/screenshots/Screenshot_5.png)  | ![Screenshot 1](/screenshots/Screenshot_6.png)  |
+<!-- | *image_path*  |
+| *image_path*  | *image_path* |
+| *image_path* | *image_path* |
+| *image_path* | *image_path* | -->
