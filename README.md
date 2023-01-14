@@ -2,8 +2,8 @@
 
 ### Features
 
-- [x] Add Expense to the list.
-- [x] Delete Expense from the list.
+- [x] Add an expense to the list.
+- [x] Delete an expense from the list.
 - [x] Dynamic chart showing the total amount spent in a day, from the past 7 days.
 
 
