@@ -62,11 +62,30 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   // Empty List of Transactions
   final List<Transaction> _userTransactions = [];
 
   bool _showChart = false;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  // This method will be called whenever your lifecycle state changes /
+  // whenever the app reaches a new state in the lifecycle.
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+  }
+
+  @override
+  dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
 
   // MANAGING THE TRANSACTIONS
   // Getting transactions only from the past 6 days + today:
@@ -153,6 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     // print(_recentTransactons);
+    print('`build()` MyHomePageState');
     final mediaQuery = MediaQuery.of(context);
 
     final appBar = AppBar(

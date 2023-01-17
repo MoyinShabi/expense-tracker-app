@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
+
 import 'package:personal_expenses_app/models/transaction.dart';
 
-class TransactionItem extends StatelessWidget {
+class TransactionItem extends StatefulWidget {
   const TransactionItem({
     Key? key,
     required this.transaction,
@@ -12,6 +15,28 @@ class TransactionItem extends StatelessWidget {
 
   final Transaction transaction;
   final void Function(String) deletetx;
+
+  @override
+  State<TransactionItem> createState() => _TransactionItemState();
+}
+
+class _TransactionItemState extends State<TransactionItem> {
+  Color? _bgColor;
+
+  @override
+  void initState() {
+    super.initState();
+    const availableColors = [
+      Colors.amber,
+      Colors.black,
+      Colors.grey,
+      Colors.indigo
+    ];
+    _bgColor = availableColors[Random().nextInt(4)];
+    // There's no need to wrap `_bgColor` here in `initState()` into `setState((){})`
+    // because `initState()` is normally called before `build()` is executed. So,
+    // `build()` will normally take into account any changes made in `initState()`.
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +51,13 @@ class TransactionItem extends StatelessWidget {
       child: ListTile(
         leading: CircleAvatar(
           radius: 30,
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          // backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: _bgColor,
           child: Padding(
             padding: const EdgeInsets.all(6),
             child: FittedBox(
               child: Text(
-                '₦${transaction.amount}',
+                '₦${widget.transaction.amount}',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,
@@ -41,7 +67,7 @@ class TransactionItem extends StatelessWidget {
           ),
         ),
         title: Text(
-          transaction.title,
+          widget.transaction.title,
           // style: Theme.of(context).textTheme.headline1,
           style: const TextStyle(
             fontSize: 16,
@@ -49,14 +75,14 @@ class TransactionItem extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          DateFormat.yMMMd().format(transaction.date),
+          DateFormat.yMMMd().format(widget.transaction.date),
           style: const TextStyle(color: Colors.grey),
         ),
         trailing: MediaQuery.of(context).size.width >
                 400 // Checks the width of the screen
             ? TextButton.icon(
                 onPressed: () {
-                  deletetx(transaction.id);
+                  widget.deletetx(widget.transaction.id);
                 },
                 label: const Text('Delete'),
                 style: TextButton.styleFrom(
@@ -65,7 +91,7 @@ class TransactionItem extends StatelessWidget {
                 icon: const Icon(Ionicons.trash_outline))
             : IconButton(
                 onPressed: () {
-                  deletetx(transaction.id);
+                  widget.deletetx(widget.transaction.id);
                   /*  final snackBar = SnackBar(
                     content: Text(
                       "${transactionList[index].title} Deleted",

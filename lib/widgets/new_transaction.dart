@@ -5,10 +5,15 @@ import 'package:ionicons/ionicons.dart';
 class NewTransaction extends StatefulWidget {
   final void Function(String, int, DateTime) addTx;
 
-  const NewTransaction({super.key, required this.addTx});
+  NewTransaction({super.key, required this.addTx}) {
+    print('Constructor NewTransaction Widget');
+  }
 
   @override
-  State<NewTransaction> createState() => _NewTransactionState();
+  State<NewTransaction> createState() {
+    print('createState NewTransaction Widget');
+    return _NewTransactionState();
+  }
 }
 
 class _NewTransactionState extends State<NewTransaction> {
@@ -18,6 +23,38 @@ class _NewTransactionState extends State<NewTransaction> {
   // you're done.
 
   DateTime? _selectedDate;
+
+  _NewTransactionState() {
+    print('Constructor NewTransaction State');
+  }
+
+  @override
+  // `@override` is added because `initState()` is implemented by the state
+  // class we're extending / inheriting from. `@override` means that we're
+  // making it clear that we're delibrately adding our own `initState()` method
+  // meaning that the default one in the parent class state which we're extending
+  // is not called anymore but our oun is called.
+  void initState() {
+    super.initState();
+    print('`initState()`');
+    // `super` is a keyword in Dart which refers to the parent class and ensures
+    // here that we also call `initState()` there, so that not just the
+    // `initState()` method in this class gets called but also the one that is
+    // built into the state(what we're extending). However, before
+    // `super.initState();` is called, you can do your own initializations.
+  }
+
+  @override
+  void didUpdateWidget(covariant NewTransaction oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('`didUpdateWidget()`');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('`dispose()`');
+  }
 
   // Date Picker
   void _presentDatePicker() {

@@ -16,6 +16,7 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('`build() TransactionList`');
     return transactionList.isEmpty
         ? LayoutBuilder(builder: (ctx, constraints) {
             return Column(
@@ -44,8 +45,13 @@ class TransactionList extends StatelessWidget {
             itemCount: transactionList.length,
             itemBuilder: (context, index) {
               return TransactionItem(
-                  transaction: transactionList[index], deletetx: deleteTx);
+                  key: ValueKey(transactionList[index].id),
+                  transaction: transactionList[index],
+                  deletetx: deleteTx);
             },
+            findChildIndexCallback: (key) => transactionList.indexWhere(
+              (element) => ValueKey(element.id) == (key as ValueKey),
+            ),
           );
   }
 }

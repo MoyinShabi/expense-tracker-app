@@ -13,6 +13,7 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('`build() ChartBar`');
     return LayoutBuilder(
       // LayoutBuilder helps to get information about the constraints (sizing) of a particular widget, and
       // in this case, the `ChartBar` widget which is essentially a Column

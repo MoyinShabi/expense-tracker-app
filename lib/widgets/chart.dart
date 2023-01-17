@@ -7,7 +7,9 @@ import 'package:personal_expenses_app/widgets/chart_bar.dart';
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
 
-  const Chart(this.recentTransactions, {super.key});
+  Chart(this.recentTransactions, {super.key}) {
+    print('`Constructor Chart`');
+  }
 
   // Getter to generate the list of transactions grouped per day as Maps:
   List<Map<String, Object>> get transactionsByWeekday {
@@ -53,6 +55,7 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // print(transactionsByWeekday);
+    print('`build() Chart`');
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       elevation: 8,
