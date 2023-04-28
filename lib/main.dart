@@ -165,15 +165,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       centerTitle: true,
-      /*  actions: [
-        IconButton(
-          onPressed: () => _showNewTransactionSheet(context),
-          icon: Icon(
-            Ionicons.add_outline,
-            color: Theme.of(context).colorScheme.primary,
-          ),
-        ),
-      ], */
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
@@ -187,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final availableHeight = (mediaQuery.size.height -
         appBar.preferredSize.height -
         mediaQuery.padding.top);
-    // ^ The available height of the screen calulated is the full height of the device
+    // ^ The available height of the screen calculated is the full height of the device
     // minus the appBar minus the status bar.
 
     final transactionListWidget = SizedBox(
